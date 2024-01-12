@@ -1,25 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import questTheme from 'src/QuestUiKitLightTheme';
+import TeamsPage from 'src/components/TeamsPage/TeamsPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HelmetProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={questTheme}>
+          <Routes>
+            <Route path="/Teams" element={<TeamsPage />} />
+          </Routes>
+        </ThemeProvider>
+      </StyledEngineProvider>
+    </HelmetProvider>
   );
 }
 
